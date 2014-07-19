@@ -24,6 +24,7 @@ for module in _prefer:
     if module=='pyside':
         try:
             from PySide.QtCore import *
+            from PySide import __version__ as module_version_str
         except Exception as e:
             if exception is None:
                 exception = e
@@ -46,6 +47,7 @@ for module in _prefer:
             from PyQt4.QtCore import *
             from PyQt4.QtCore import pyqtSignal as Signal
             from PyQt4.QtCore import pyqtSlot as Slot
+            from PyQt4.QtCore import PYQT_VERSION_STR as module_version_str
         except Exception as e:
             if exception is None:
                 exception = e
@@ -57,6 +59,7 @@ for module in _prefer:
             from PyQt5.QtCore import *
             from PyQt5.QtCore import pyqtSignal as Signal
             from PyQt5.QtCore import pyqtSlot as Slot
+            from PyQt5.QtCore import PYQT_VERSION_STR as module_version_str
         except Exception as e:
             if exception is None:
                 exception = e

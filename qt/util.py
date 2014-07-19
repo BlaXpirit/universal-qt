@@ -29,12 +29,13 @@ def qu(target, *args, **properties):
         except AttributeError:
             f = getattr(target, ''.join(w.capitalize() if i else w.lower() for i, w in enumerate(k.split('_'))))
             from . import Signal
-            if isinstance(f, Signal):
+            try:
                 f.connect(v)
-            elif type(v) is tuple:
-                f(*v)
-            else:
-                f(v)
+            except AttributeError:
+                if type(v) is tuple:
+                    f(*v)
+                else:
+                    f(v)
     return target
 
 

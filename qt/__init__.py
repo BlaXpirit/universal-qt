@@ -20,14 +20,16 @@ _prefer = ['pyside', 'pyqt4', 'pyqt5']
 
 def init(*prefer):
     global _prefer
-    global Signal, Slot, version
+    global Signal, Slot, module, major, module_version_str, version_str
     if prefer:
         _prefer = [m.lower() for m in prefer]
     from . import core
     Signal = core.Signal
     Slot = core.Slot
-    module = core.module
-    version = 5 if module=='pyqt5' else 4
+    module = {'pyside': 'PySide', 'pyqt4': 'PyQt4', 'pyqt5': 'PyQt5'}[core.module]
+    major = 5 if module=='pyqt5' else 4
+    module_version_str = core.module_version_str
+    version_str = core.qVersion()
 
     globals().update((k, v) for k, v in core.Qt.__dict__.items() if not k.startswith('_'))
 
