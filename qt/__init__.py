@@ -26,7 +26,7 @@ def init(*prefer):
     from . import core
     Signal = core.Signal
     Slot = core.Slot
-    major = 5 if module=='pyqt5' else 4
+    major = 5 if core.module=='pyqt5' else 4
     module = {'pyside': 'PySide', 'pyqt4': 'PyQt4', 'pyqt5': 'PyQt5'}[core.module]
     module_version_str = core.module_version_str
     version_str = core.qVersion()
