@@ -27,7 +27,7 @@ def qu(target, *args, **properties):
             else:
                 f(v)
         except AttributeError:
-            f = getattr(''.join(w.capitalize() if i else w.lower() for i, w in enumerate(k.split('_'))))
+            f = getattr(target, ''.join(w.capitalize() if i else w.lower() for i, w in enumerate(k.split('_'))))
             from . import Signal
             if isinstance(f, Signal):
                 f.connect(v)
